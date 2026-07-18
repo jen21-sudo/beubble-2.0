@@ -1,0 +1,27 @@
+# Environnement
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.py.class
+.venv/
+venv/
+
+# Logs et sorties
+*.log
+backend/logs/
+backend/screenshots/
+backend/database/
+backend/workspace/
+
+# Frontend
+frontend/node_modules/
+
+# Systèmes
+.DS_Store
+Thumbs.db

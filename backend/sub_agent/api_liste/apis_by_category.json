@@ -1,0 +1,76 @@
+{
+  "Cryptocurrency": [
+    {
+      "name": "CoinGecko",
+      "description": "Cryptocurrency prices, market data, and historical charts from over 1000 coins."
+    },
+    {
+      "name": "CoinCap API",
+      "description": "Real-time cryptocurrency prices, market cap, and volume data."
+    },
+    {
+      "name": "Binance API",
+      "description": "Cryptocurrency exchange data, trading pairs, and market depth."
+    }
+  ],
+  "Weather": [
+    {
+      "name": "wttr.in",
+      "description": "Weather forecast for any city with simple text output. Supports multiple formats."
+    },
+    {
+      "name": "Open-Meteo",
+      "description": "Free weather API with current weather, forecasts, and historical data."
+    },
+    {
+      "name": "OpenWeatherMap",
+      "description": "Current weather, forecasts, and historical data with API key."
+    },
+    {
+      "name": "WeatherAPI",
+      "description": "Weather data including current conditions, forecasts, and astronomy."
+    }
+  ],
+  "Fun": [
+    {
+      "name": "JokeAPI",
+      "description": "Random jokes in multiple languages with categories like programming, dark, and more."
+    },
+    {
+      "name": "PokéAPI",
+      "description": "Complete Pokémon data including abilities, moves, evolution, and more."
+    }
+  ],
+  "Data": [
+    {
+      "name": "Random User Generator",
+      "description": "Generate random user data including name, email, address, and avatar."
+    },
+    {
+      "name": "REST Countries",
+      "description": "Information about countries including name, capital, population, and flags."
+    },
+    {
+      "name": "IP-API",
+      "description": "Geolocation information for any IP address including country, city, and ISP."
+    }
+  ],
+  "Finance": [
+    {
+      "name": "ExchangeRate-API",
+      "description": "Real-time exchange rates for over 100 currencies with historical data."
+    }
+  ],
+  "Development": [
+    {
+      "name": "GitHub API",
+      "description": "GitHub REST API for repositories, issues, pulls, and user data."
+    }
+  ],
+  "News": [
+    {
+      "name": "NewsAPI",
+      "description": "Top news headlines from multiple sources around the world."
+    }
+  ]
+}

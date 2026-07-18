@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beubble 2.0</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%23667eea'/><text x='50' y='58' text-anchor='middle' font-size='32' font-weight='bold' fill='white'>B</text></svg>">
+</head>
+<body>
+    <div id="app">
+        <!-- ===== SIDEBAR ===== -->
+        <aside id="sidebar">
+            <div id="sidebar-header">
+                <h3>Workspace</h3>
+                <div class="header-actions">
+                    <button onclick="refreshWorkspace()" title="Refresh">⟳</button>
+                    <button onclick="showCreateFolder()" title="New Folder">+</button>
+                </div>
+            </div>
+
+            <div id="upload-zone" onclick="document.getElementById('fileInput').click()">
+                <span>Drop files or click to upload</span>
+                <input type="file" id="fileInput" multiple onchange="uploadFiles(event)">
+            </div>
+
+            <div id="file-tree">
+                <div class="loading-placeholder">Loading workspace...</div>
+            </div>
+        </aside>
+
+        <!-- ===== CENTER PANEL ===== -->
+        <main id="center-panel">
+            <header id="center-header">
+                <div class="header-left">
+                    <div class="logo-circle">
+                        <svg viewBox="0 0 100 100" width="36" height="36">
+                            <defs>
+                                <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#764ba2;stop-opacity:1" />
+                                    <stop offset="50%" style="stop-color:#764ba2;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#5ac8fa;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <circle cx="50" cy="50" r="45" fill="url(#logoGrad)"/>
+                        </svg>
+                    </div>
+                    <h2>Beubble 2.0</h2>
+                    <span class="model-badge">Qwen-Plus</span>
+                </div>
+                <div class="header-right">
+                    <span id="session-info">Session: loading...</span>
+                    <div id="status" class="status offline">● Offline</div>
+                    <button id="theme-toggle" onclick="toggleTheme()" title="Toggle theme">◐</button>
+                </div>
+            </header>
+
+            <div id="chat-messages">
+                <div class="message system">Welcome to Beubble 2.0. How can I help you?</div>
+            </div>
+
+            <div id="input-area">
+                <input type="text" id="promptInput" placeholder="Type your request..." disabled>
+                <button id="sendBtn" onclick="sendMission()" disabled>Send</button>
+            </div>
+        </main>
+
+        <!-- ===== RIGHT PANEL ===== -->
+        <aside id="right-panel">
+            <header id="right-header">
+                <h3>Agent Logs</h3>
+                <div id="terminal-controls">
+                    <button onclick="clearTerminal()">Clear</button>
+                </div>
+            </header>
+            <div id="terminal">
+                <div class="terminal-placeholder">Waiting for agent output...</div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- ===== MODAL ===== -->
+    <div id="folder-modal" class="modal hidden">
+        <div class="modal-content">
+            <h3>Create New Folder</h3>
+            <input type="text" id="folder-name-input" placeholder="Folder name..." />
+            <div class="modal-actions">
+                <button onclick="createFolder()">Create</button>
+                <button onclick="closeModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>

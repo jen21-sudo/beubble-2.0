@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beubble 2.0 - Céréales & Terres Rares</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">
+            <h1>🫧 Beubble 2.0</h1>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#accueil">Accueil</a></li>
+            <li><a href="#marche">Marchés</a></li>
+            <li><a href="#prix">Prix</a></li>
+            <li><a href="#strategie">Stratégie</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="cta-btn" onclick="scrollToSection('contact')">Démarrer</button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="accueil" class="hero">
+        <div class="hero-content">
+            <h2>Investissez dans l'Avenir des <span class="highlight">Céréales</span> et des <span class="highlight">Terres Rares</span></h2>
+            <p>Analyse de marché en temps réel, prévisions de prix et stratégies d'investissement pour les matières premières de demain.</p>
+            <div class="hero-buttons">
+                <button class="btn-primary" onclick="scrollToSection('marche')">Explorer les Marchés</button>
+                <button class="btn-secondary" onclick="scrollToSection('prix')">Voir les Prix</button>
+            </div>
+        </div>
+        <div class="hero-stats">
+            <div class="stat-card">
+                <h3 id="wheat-price">$7.45</h3>
+                <p>Blé (CBOT)</p>
+                <span class="trend up">▲ +12¢</span>
+            </div>
+            <div class="stat-card">
+                <h3 id="corn-price">$1.24/kg</h3>
+                <p>Maïs (SA)</p>
+                <span class="trend up">▲ Stable</span>
+            </div>
+            <div class="stat-card">
+                <h3 id="neodymium-price">$142/kg</h3>
+                <p>Néodyme</p>
+                <span class="trend up">▲ +5.2%</span>
+            </div>
+            <div class="stat-card">
+                <h3 id="praseodymium-price">$680/kg</h3>
+                <p>Praséodyme</p>
+                <span class="trend up">▲ +8.1%</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Market Analysis Section -->
+    <section id="marche" class="market-section">
+        <h2 class="section-title">Analyse des Marchés</h2>
+        <div class="market-grid">
+            <div class="market-card">
+                <div class="card-icon">🌾</div>
+                <h3>Marché des Céréales</h3>
+                <p>Le marché mondial des céréales affiche une tendance haussière soutenue par la demande d'exportation et les conditions logistiques. Les céréales sud-américaines maintiennent les prix les plus élevés en 2025, entre USD 1.20 et USD 1.27/kg.</p>
+                <ul class="market-highlights">
+                    <li>Blé CBOT: Hausse de 12¢</li>
+                    <li>Maïs brésilien: Soutenu par la demande</li>
+                    <li>Riz asiatique: Stabilité</li>
+                    <li>Orge européenne: Modérée</li>
+                </ul>
+                <button class="btn-card" onclick="showDetails('cereales')">Détails →</button>
+            </div>
+            <div class="market-card">
+                <div class="card-icon">💎</div>
+                <h3>Terres Rares</h3>
+                <p>Les terres rares présentent un risque d'approvisionnement critique. La demande de praséodyme pourrait doubler d'ici 2040, atteignant 227% de la production de 2018. Le terbium est classé comme matière première particulièrement critique.</p>
+                <ul class="market-highlights">
+                    <li>Praséodyme: Demande ×2 d'ici 2040</li>
+                    <li>Néodyme: Croissance soutenue</li>
+                    <li>Terbium: Critique & rare</li>
+                    <li>Dysprosium: Tension d'offre</li>
+                </ul>
+                <button class="btn-card" onclick="showDetails('terres-rares')">Détails →</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Price Charts Section -->
+    <section id="prix" class="price-section">
+        <h2 class="section-title">Évolution des Prix</h2>
+        <div class="chart-container">
+            <div class="chart-tabs">
+                <button class="tab active" onclick="switchTab('cereales')">Céréales</button>
+                <button class="tab" onclick="switchTab('terres-rares')">Terres Rares</button>
+            </div>
+            <div class="chart-wrapper">
+                <canvas id="priceChart" width="800" height="400"></canvas>
+            </div>
+            <div class="price-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Matière</th>
+                            <th>Prix Actuel</th>
+                            <th>Variation 7j</th>
+                            <th>Variation 30j</th>
+                            <th>Prévision</th>
+                        </tr>
+                    </thead>
+                    <tbody id="priceTableBody">
+                        <tr>
+                            <td>🌾 Blé</td>
+                            <td>$7.45/bu</td>
+                            <td class="positive">+1.6%</td>
+                            <td class="positive">+3.2%</td>
+                            <td>Haussier</td>
+                        </tr>
+                        <tr>
+                            <td>🌽 Maïs</td>
+                            <td>$1.24/kg</td>
+                            <td class="positive">+0.8%</td>
+                            <td class="positive">+2.1%</td>
+                            <td>Stable ↑</td>
+                        </tr>
+                        <tr>
+                            <td>🍚 Riz</td>
+                            <td>$580/t</td>
+                            <td class="negative">-0.3%</td>
+                            <td class="positive">+1.5%</td>
+                            <td>Stable</td>
+                        </tr>
+                        <tr>
+                            <td>💎 Néodyme</td>
+                            <td>$142/kg</td>
+                            <td class="positive">+5.2%</td>
+                            <td class="positive">+12.8%</td>
+                            <td>Haussier</td>
+                        </tr>
+                        <tr>
+                            <td>💎 Praséodyme</td>
+                            <td>$680/kg</td>
+                            <td class="positive">+8.1%</td>
+                            <td class="positive">+15.3%</td>
+                            <td>Très haussier</td>
+                        </tr>
+                        <tr>
+                            <td>💎 Terbium</td>
+                            <td>$1,850/kg</td>
+                            <td class="positive">+3.7%</td>
+                            <td class="positive">+9.2%</td>
+                            <td>Haussier</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Strategy Section -->
+    <section id="strategie" class="strategy-section">
+        <h2 class="section-title">Notre Stratégie</h2>
+        <div class="strategy-timeline">
+            <div class="timeline-item">
+                <div class="timeline-marker">1</div>
+                <div class="timeline-content">
+                    <h3>Analyse de Marché</h3>
+                    <p>Évaluation approfondie des tendances de prix des céréales et terres rares. Identification des opportunités d'arbitrage et des corridors commerciaux optimaux.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-marker">2</div>
+                <div class="timeline-content">
+                    <h3>Positionnement Stratégique</h3>
+                    <p>Développement d'un positionnement unique combinant expertise agricole et connaissance des matériaux critiques pour créer une offre différenciée.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-marker">3</div>
+                <div class="timeline-content">
+                    <h3>Partenariats & Réseaux</h3>
+                    <p>Établissement de partenariats avec producteurs sud-américains et fournisseurs asiatiques de terres rares pour sécuriser l'approvisionnement.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-marker">4</div>
+                <div class="timeline-content">
+                    <h3>Lancement & Croissance</h3>
+                    <p>Mise en place de la plateforme de trading, acquisition des premiers clients institutionnels et expansion progressive vers les marchés de détail.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <h2 class="section-title">Contactez-Nous</h2>
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h3>Prêt à investir ?</h3>
+                <p>Notre équipe d'experts est disponible pour vous accompagner dans votre stratégie d'investissement sur les marchés des céréales et des terres rares.</p>
+                <div class="contact-details">
+                    <p>📧 contact@beubble2.com</p>
+                    <p>📞 +33 1 23 45 67 89</p>
+                    <p>📍 Paris, France</p>
+                </div>
+            </div>
+            <form class="contact-form" onsubmit="handleSubmit(event)">
+                <input type="text" placeholder="Nom complet" required>
+                <input type="email" placeholder="Email" required>
+                <select required>
+                    <option value="">Sujet</option>
+                    <option value="cereales">Marché des Céréales</option>
+                    <option value="terres-rares">Terres Rares</option>
+                    <option value="investissement">Investissement</option>
+                    <option value="partenariat">Partenariat</option>
+                </select>
+                <textarea placeholder="Votre message..." rows="5" required></textarea>
+                <button type="submit" class="btn-primary">Envoyer</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Beubble 2.0</h4>
+                <p>Plateforme d'analyse et d'investissement dans les matières premières stratégiques.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Liens Rapides</h4>
+                <a href="#marche">Marchés</a>
+                <a href="#prix">Prix</a>
+                <a href="#strategie">Stratégie</a>
+            </div>
+            <div class="footer-section">
+                <h4>Ressources</h4>
+                <a href="#">Rapport de Marché</a>
+                <a href="#">Prévisions</a>
+                <a href="#">Documentation</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Beubble 2.0 - Tous droits réservés</p>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div id="modal" class="modal" onclick="closeModal(event)">
+        <div class="modal-content">
+            <span class="close-btn" onclick="document.getElementById('modal').style.display='none'">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

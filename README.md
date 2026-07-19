@@ -67,7 +67,6 @@ Located in `backend/memory/`, the system implements a sophisticated three-layer 
 2. Working Memory (Agent Collaboration Space): Acts as a dynamic, non-persistent whiteboard shared across active agents and heavily utilized by the Terminal Agent. This layout allows the terminal worker to execute system scripts with higher fluidity, providing immediate step-by-step action visibility and operational recall across multi-stage commands. It prevents data duplication and keeps concurrent operations synchronized.
 3. Long-Term Memory (Vector-Based Storage): Powered natively by Qdrant Vector Database, this layer handles persistent knowledge retrieval. Important summaries, past execution patterns, and structural insights are vectorized via Jina AI Embeddings and stored securely. This enables semantic search across past sessions, avoiding a fresh start at every interaction.
 
-
 #### Dual Execution Paradigms:
 * Parallel Execution Flow: When the user prompt requires multiple independent investigations (e.g., scraping a web page via the Navigator while pulling data from an API endpoint), workers are spawned concurrently. Sub-agents read from the shared Working Memory at the same time to gain instant context, performing non-blocking executions to maximize operational throughput.
 * Sequential Dependency Flow: When a sub-task directly depends on the outcome of another (e.g., the Terminal Agent needs a file setup that must first be extracted by the Navigator), execution switches to a deterministic sequence. The first agent commits its structural findings directly into the shared state. The subsequent agent instantly inherits this freshly updated context from Session & Working Memory, preventing execution drift.
@@ -115,30 +114,147 @@ To configure the environment:
 
 ---
 
-## 5. Deployment Setup (Alibaba Cloud ECS)
+## 5. Installation & Running Instructions (Docker)
 
-To compile the production container and fire up the system on the active Alibaba Cloud virtual server, follow these terminal steps:
+### 5.1 Local Development Setup
 
-### 1. Connect to the ECS and navigate to the project
+To run Beubble 2.0 locally for development and testing:
+
+#### Step 1: Clone the repository
 ```bash
-git clone https://github.com
-cd YOUR_REPOSITORY/backend
+git clone https://github.com/your-username/beubble_2.0.git
+cd beubble_2.0
 ```
 
-### 2. Configure production variables
-Create the actual, secure production `.env` file right inside the `backend/` folder:
+#### Step 2: Configure environment variables
+```bash
+cd backend
+cp .env.example .env
+nano .env  # Add your actual API keys
+```
+
+#### Step 3: Build the Docker image
+```bash
+# Clean build (recommended to avoid cache issues)
+sudo DOCKER_BUILDKIT=0 docker build -t beubble-app .
+```
+
+#### Step 4: Run the container
+```bash
+docker run -d -p 8000:8000 --env-file .env --name beubble-backend beubble-app
+```
+
+#### Step 5: View logs (monitor application startup)
+```bash
+docker logs -f beubble-backend
+```
+
+#### Step 6: Access the application
+Open your browser and navigate to: **http://localhost:8000**
+
+### 5.2 Alibaba Cloud ECS Production Deployment
+
+To deploy on Alibaba Cloud:
+
+#### Step 1: Connect to the ECS
+```bash
+ssh root@<YOUR_ECS_PUBLIC_IP>
+git clone https://github.com/your-username/beubble_2.0.git
+cd beubble_2.0/backend
+```
+
+#### Step 2: Configure production variables
 ```bash
 nano .env
 # Paste the actual keys, then Save (Ctrl+O) and Exit (Ctrl+X)
 ```
 
-### 3. Build the Docker Image
+#### Step 3: Build the Docker Image
 ```bash
-docker build -t beubble-app .
+sudo DOCKER_BUILDKIT=0 docker build -t beubble-app .
 ```
 
-### 4. Run the Container on Alibaba Cloud
+#### Step 4: Run the Container
 ```bash
 docker run -d -p 8000:8000 --env-file .env --name beubble-backend beubble-app
 ```
-*Note: Ensure the Alibaba Cloud Security Group allows Inbound traffic on Port 8000.*
+
+#### Step 5: Verify the deployment
+```bash
+# Check if container is running
+docker ps
+
+# View logs
+docker logs -f beubble-backend
+```
+
+#### Step 6: Access the live application
+Open your browser: **http://<YOUR_ECS_PUBLIC_IP>:8000**
+
+---
+
+## 6. Quick Commands Reference
+
+```bash
+# Clone and setup
+git clone https://github.com/your-username/beubble_2.0.git
+cd beubble_2.0/backend
+
+# Docker build and run (local)
+sudo DOCKER_BUILDKIT=0 docker build -t beubble-app .
+docker run -d -p 8000:8000 --env-file .env --name beubble-backend beubble-app
+
+# Monitor logs
+docker logs -f beubble-backend
+
+# Stop and remove container
+docker stop beubble-backend
+docker rm beubble-backend
+
+# Access application - open http://localhost:8000 in your browser
+
+# Alibaba Cloud deployment
+scp -r . root@<ECS_IP>:/path/to/deploy/
+ssh root@<ECS_IP>
+cd /path/to/deploy
+sudo DOCKER_BUILDKIT=0 docker build -t beubble-app .
+docker run -d -p 8000:8000 --env-file .env --name beubble-backend beubble-app
+```
+
+---
+
+## 7. Troubleshooting
+
+### Common Issues and Solutions
+
+#### Port Already in Use
+```bash
+# Find and kill process using port 8000
+sudo lsof -i :8000
+sudo kill -9 <PID>
+```
+
+#### Docker Build Failing
+```bash
+# Clear Docker cache and rebuild
+docker system prune -a
+sudo DOCKER_BUILDKIT=0 docker build --no-cache -t beubble-app .
+```
+
+#### Playwright Issues
+```bash
+# Reinstall Playwright browsers inside container
+docker exec -it beubble-backend playwright install
+```
+
+#### Environment Variables Not Loading
+```bash
+# Verify .env file exists
+ls -la backend/.env
+# Check variables are loaded in container
+docker exec beubble-backend env | grep DASHSCOPE
+```
+
+---
+
+*Beubble 2.0 - Advanced Multi-Agent Orchestration Platform*

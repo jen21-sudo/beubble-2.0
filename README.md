@@ -9,12 +9,11 @@ Beubble 2.0 is an advanced multi-agent application designed to orchestrate autom
 To meet the official hackathon regulations, the complete multi-agent backend and frontend bundle is fully containerized and currently running live on an Alibaba Cloud ECS (Elastic Compute Service) Instance.
 
 * Deployment File: Standardized through the production [backend/Dockerfile](./backend/Dockerfile).
-* Live API & Web Endpoint: http://<YOUR_ECS_PUBLIC_IP>:8000/ (Replace with the real ECS Public IP)
+* Live API & Web Endpoint: https://beubble.com 
 * Infrastructure & Security Details:
   * Compute: Alibaba Cloud ECS Instance (Ubuntu Linux).
   * AI Orchestration: Backend hosted on ECS making native, secure API calls to Qwen Cloud (DashScope) via https://aliyuncs.com.
-  * Zero-Leak Security: Secrets are securely injected inside the live cloud container at runtime via Docker environment flags. Credentials never touch the public GitHub repository.
-
+  * Zero-Leak Security: Secrets are securely injected inside the live cloud container at runtime via Docker environment flags. Credentials never touch the public GitHub repository.(ngix , cloudflare tunnel)
 ---
 
 ## 1. Overview

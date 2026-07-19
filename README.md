@@ -149,8 +149,6 @@ docker run -d -p 8000:8000 --env-file .env --name beubble-backend beubble-app
 docker logs -f beubble-backend
 ```
 
-#### Step 6: Access the application
-Open your browser and navigate to: **http://localhost:8000**
 
 ### 5.2 Alibaba Cloud ECS Production Deployment
 

@@ -37,8 +37,7 @@ if str(ROOT_DIR) not in sys.path:
 DATABASE_DIR = config.DATABASE_DIR
 WORKSPACE_DIR = config.WORKSPACE_DIR
 LOGS_DIR = config.LOGS_DIR
-PROJECT_ROOT = ROOT_DIR.parent
-FRONTEND_DIR = PROJECT_ROOT / "frontend" / "public"
+FRONTEND_DIR = ROOT_DIR / "frontend" / "public"
 
 # Database paths
 SESSION_DB_PATH = config.get_db_path("session_store.db")

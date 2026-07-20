@@ -1,5 +1,3 @@
-Je vais mettre à jour le README pour refléter l'état actuel du code et retirer la section spécifique au déploiement Alibaba Cloud comme demandé.
-
 # Beubble 2.0 - Multi-Agent System
 
 Beubble 2.0 is an advanced multi-agent application designed to orchestrate automated complex tasks through a FastAPI backend, an integrated static frontend, and several specialized sub-agents for web navigation, terminal execution, API interaction, and vector-based memory management.

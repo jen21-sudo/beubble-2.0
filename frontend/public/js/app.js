@@ -2,7 +2,8 @@
 // CONFIGURATION
 // ============================================================
 
-const WS_URL = `ws://${window.location.host}/ws/agent`;
+const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+const WS_URL = `${protocol}//${window.location.host}/ws/agent`;
 const API_BASE = window.location.origin;
 
 // ============================================================
